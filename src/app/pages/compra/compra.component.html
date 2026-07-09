@@ -1,0 +1,140 @@
+<!-- ============== HERO PRINCIPAL ============== -->
+<section class="bg-dark border-bottom border-danger">
+  <div class="container text-center py-5">
+    <h1 class="fw-bold text-uppercase display-4">
+      Viste tu <span class="text-danger">Rebeldía</span>
+    </h1>
+    <p class="lead text-secondary">
+      Ropa y accesorios inspirados en Rock, Metal, Punk y Grunge.
+    </p>
+    <a href="#catalogo" class="btn btn-danger btn-lg mt-3 px-4 rounded-3">
+      <i class="bi bi-bag-heart-fill me-2"></i>Comprar Ahora
+    </a>
+  </div>
+</section>
+
+<!-- ============== CATÁLOGO DE PRODUCTOS ============== -->
+<section id="catalogo" class="container py-5">
+  <h2 class="fw-bold text-uppercase text-center mb-5">
+    Nuestro <span class="text-danger">Catálogo</span>
+  </h2>
+
+  <div class="row g-4">
+    <div class="col-12 col-sm-6 col-lg-3" *ngFor="let p of productos">
+      <div class="card bg-dark border-secondary shadow h-100">
+        <img [src]="p.imagen" class="card-img-top" [alt]="p.nombre" />
+        <div class="card-body d-flex flex-column">
+          <span class="badge bg-danger align-self-start mb-2">{{ p.categoria }}</span>
+          <h5 class="card-title">{{ p.nombre }}</h5>
+          <p class="card-text fw-bold text-danger mb-3">
+            ${{ p.precio | number: '1.0-0' }}
+          </p>
+          <button class="btn btn-danger mt-auto rounded-3" (click)="seleccionarProducto(p)">
+            <i class="bi bi-cart-plus-fill me-1"></i>Comprar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FORMULARIO DE COMPRA ============== -->
+<section id="formulario-compra" class="container pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card bg-dark border-secondary shadow-lg p-4">
+        <h3 class="fw-bold text-uppercase text-center mb-4">
+          Formulario de <span class="text-danger">Compra</span>
+        </h3>
+
+        <!-- Mensaje de éxito -->
+        <div class="alert alert-success d-flex align-items-center" role="alert" *ngIf="mostrarExito">
+          <i class="bi bi-check-circle-fill me-2"></i>
+          <div>¡Compra registrada con éxito!</div>
+        </div>
+
+        <form [formGroup]="compraForm" (ngSubmit)="onSubmit()" novalidate>
+          <!-- Producto -->
+          <div class="mb-3">
+            <label for="producto" class="form-label">Producto</label>
+            <input
+              type="text"
+              id="producto"
+              class="form-control"
+              formControlName="producto"
+              placeholder="Ej: Polera Metallica"
+              [class.is-invalid]="f['producto'].invalid && f['producto'].touched"
+            />
+            <div class="invalid-feedback" *ngIf="f['producto'].errors?.['required'] && f['producto'].touched">
+              El producto es obligatorio.
+            </div>
+            <div class="invalid-feedback" *ngIf="f['producto'].errors?.['minlength'] && f['producto'].touched">
+              El producto debe tener al menos 3 caracteres.
+            </div>
+          </div>
+
+          <!-- Cantidad -->
+          <div class="mb-3">
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <input
+              type="number"
+              id="cantidad"
+              class="form-control"
+              formControlName="cantidad"
+              min="1"
+              [class.is-invalid]="f['cantidad'].invalid && f['cantidad'].touched"
+            />
+            <div class="invalid-feedback" *ngIf="f['cantidad'].errors?.['required'] && f['cantidad'].touched">
+              La cantidad es obligatoria.
+            </div>
+            <div class="invalid-feedback" *ngIf="f['cantidad'].errors?.['min'] && f['cantidad'].touched">
+              La cantidad debe ser mayor que 0.
+            </div>
+          </div>
+
+          <!-- Dirección -->
+          <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input
+              type="text"
+              id="direccion"
+              class="form-control"
+              formControlName="direccion"
+              placeholder="Ej: Av. Siempre Viva 742"
+              [class.is-invalid]="f['direccion'].invalid && f['direccion'].touched"
+            />
+            <div class="invalid-feedback" *ngIf="f['direccion'].errors?.['required'] && f['direccion'].touched">
+              La dirección es obligatoria.
+            </div>
+            <div class="invalid-feedback" *ngIf="f['direccion'].errors?.['minlength'] && f['direccion'].touched">
+              La dirección debe tener al menos 5 caracteres.
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-4">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="correo@ejemplo.com"
+              [class.is-invalid]="f['email'].invalid && f['email'].touched"
+            />
+            <div class="invalid-feedback" *ngIf="f['email'].errors?.['required'] && f['email'].touched">
+              El email es obligatorio.
+            </div>
+            <div class="invalid-feedback" *ngIf="f['email'].errors?.['email'] && f['email'].touched">
+              Ingresa un email con formato válido.
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-danger w-100 py-2 rounded-3">
+            <i class="bi bi-check2-circle me-1"></i>Confirmar Compra
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

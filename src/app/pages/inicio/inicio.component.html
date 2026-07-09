@@ -1,0 +1,57 @@
+<section class="d-flex align-items-center justify-content-center py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-8 col-md-6 col-lg-4">
+        <div class="card bg-dark border-secondary shadow-lg p-4">
+          <div class="text-center mb-4">
+            <i class="bi bi-lightning-charge-fill text-danger" style="font-size: 2.5rem"></i>
+            <h2 class="fw-bold text-uppercase mt-2">Rock<span class="text-danger">Store</span></h2>
+            <p class="text-secondary small mb-0">Ingresa a tu cuenta para comprar</p>
+          </div>
+
+          <!-- Alerta de error Bootstrap -->
+          <div class="alert alert-danger d-flex align-items-center" role="alert" *ngIf="mostrarError">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <div>Usuario o contraseña incorrectos.</div>
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="mb-3">
+              <label for="usuario" class="form-label">Usuario</label>
+              <input
+                type="text"
+                id="usuario"
+                class="form-control"
+                formControlName="usuario"
+                placeholder="admin"
+                [class.is-invalid]="f['usuario'].invalid && f['usuario'].touched"
+              />
+              <div class="invalid-feedback" *ngIf="f['usuario'].invalid && f['usuario'].touched">
+                El usuario es obligatorio.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="password" class="form-label">Contraseña</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+                placeholder="••••"
+                [class.is-invalid]="f['password'].invalid && f['password'].touched"
+              />
+              <div class="invalid-feedback" *ngIf="f['password'].invalid && f['password'].touched">
+                La contraseña es obligatoria.
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-danger w-100 py-2 rounded-3">
+              <i class="bi bi-box-arrow-in-right me-1"></i>Ingresar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
