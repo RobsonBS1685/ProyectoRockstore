@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StorageService } from '../../services/storage.service';
@@ -7,10 +7,9 @@ import { Compra } from '../../models/compra.model';
 import { Producto } from '../../models/producto.model';
 
 /**
- * Componente de Compra: muestra el catálogo de productos (Hero + Cards)
- * y un formulario reactivo para registrar la compra. Al enviar un
- * formulario válido, la compra se guarda en localStorage mediante
- * StorageService.
+ * Componente de Compra: muestra el catálogo de productos, el formulario
+ * reactivo para registrar una compra y, debajo, el listado de compras
+ * registradas (actualizado automáticamente mediante el observable compras$).
  */
 @Component({
   selector: 'app-compra',
@@ -18,9 +17,10 @@ import { Producto } from '../../models/producto.model';
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './compra.component.html',
 })
-export class CompraComponent {
+export class CompraComponent implements OnInit {
   compraForm: FormGroup;
   productos: Producto[] = [];
+  compras: Compra[] = [];
   mostrarExito = false;
 
   constructor(
@@ -36,6 +36,13 @@ export class CompraComponent {
       cantidad: [1, [Validators.required, Validators.min(1)]],
       direccion: ['', [Validators.required, Validators.minLength(5)]],
       email: ['', [Validators.required, Validators.email]],
+    });
+  }
+
+  ngOnInit(): void {
+    // Se suscribe al observable para mantener el listado siempre actualizado
+    this.storageService.compras$.subscribe((compras) => {
+      this.compras = compras;
     });
   }
 
@@ -83,5 +90,25 @@ export class CompraComponent {
 
     // Oculta el mensaje de éxito automáticamente después de unos segundos
     setTimeout(() => (this.mostrarExito = false), 4000);
+  }
+
+  /**
+   * Elimina una compra puntual por id.
+   */
+  eliminar(id: string): void {
+    this.storageService.eliminarCompra(id);
+  }
+
+  /**
+   * Vacía todas las compras registradas, previa confirmación del usuario.
+   */
+  vaciarTodo(): void {
+    if (this.compras.length === 0) {
+      return;
+    }
+    const confirmado = confirm('¿Seguro que deseas eliminar todas las compras?');
+    if (confirmado) {
+      this.storageService.vaciarCompras();
+    }
   }
 }

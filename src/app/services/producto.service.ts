@@ -11,13 +11,7 @@ import { Producto } from '../models/producto.model';
 })
 export class ProductoService {
   private productos: Producto[] = [
-    {
-  id: 9,
-  nombre: 'Gorro Kreator',
-  precio: 8990,
-  imagen: '/shopImg/gorro%20kreator.jfif',
-  categoria: 'Accesorios',
-},
+   
 {
   id: 10,
   nombre: 'Polera Slayer',
@@ -60,13 +54,6 @@ export class ProductoService {
   precio: 15990,
   imagen: '/shopImg/gojira-magma-polera-de-hombre-impresion-dtg-f.jpg',
   categoria: 'Poleras',
-},
-{
-  id: 16,
-  nombre: 'Polerón Slipknot',
-  precio: 32990,
-  imagen: '/shopImg/Poleron%20slipoknot.jpg',
-  categoria: 'Polerones',
 },
 {
   id: 17,
