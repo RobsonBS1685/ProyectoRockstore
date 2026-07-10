@@ -10,20 +10,22 @@ import { Producto } from '../models/producto.model';
   providedIn: 'root',
 })
 export class ProductoService {
+  private readonly rutaImagenes = '/images/productImagen';
+
   private productos: Producto[] = [
     {
       id: 1,
       nombre: 'Polera Metallica',
       precio: 14990,
-      imagen: 'https://placehold.co/400x400/0d0d0d/e10600?text=Metallica',
+      imagen: `${this.rutaImagenes}/Polera Metallica.jpg`,
       categoria: 'Poleras',
     },
     {
       id: 2,
-      nombre: 'Polera Nirvana',
+      nombre: 'Poleron Mayhem',
       precio: 13990,
-      imagen: 'https://placehold.co/400x400/0d0d0d/e10600?text=Nirvana',
-      categoria: 'Poleras',
+      imagen: `${this.rutaImagenes}/poleron mayhem.jpg`,
+      categoria: 'Poleron',
     },
     {
       id: 3,
@@ -36,7 +38,7 @@ export class ProductoService {
       id: 4,
       nombre: 'Bototos Rock',
       precio: 45990,
-      imagen: '/images/zp.jpg',
+      imagen: 'https://placehold.co/400x400/0d0d0d/e10600?text=Bototos+Rock',
       categoria: 'Calzado',
     },
     {
@@ -57,7 +59,7 @@ export class ProductoService {
       id: 7,
       nombre: 'Pulsera de Cuero',
       precio: 6990,
-      imagen: 'https://placehold.co/400x400/0d0d0d/e10600?text=Pulsera',
+      imagen: 'https://placehold.co/400x400/0d0d0d/e10600?text=Pulsera+Cuero',
       categoria: 'Accesorios',
     },
     {
@@ -67,6 +69,24 @@ export class ProductoService {
       imagen: 'https://placehold.co/400x400/0d0d0d/e10600?text=Beanie',
       categoria: 'Accesorios',
     },
+
+     {
+      id: 9,
+      nombre: 'KISS',
+      precio: 8990,
+      imagen: `${this.rutaImagenes}/BANNER-KISS-TOUR-2022-1.jpg`,
+      categoria: 'Accesorios',
+    },
+
+    {
+      id: 10,
+      nombre: 'Polera Iron Maiden',
+      precio: 8990,
+      imagen: `${this.rutaImagenes}/polera iron maiden.jfif`,
+      categoria: 'Poleras',
+    },
+
+
   ];
 
   /**
