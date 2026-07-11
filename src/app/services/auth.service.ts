@@ -10,7 +10,17 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private readonly USUARIO_VALIDO = 'admin';
   private readonly PASSWORD_VALIDA = '1234';
+  private readonly SESSION_KEY = 'rockstore-session';
   private sesionActiva = false;
+  private usuarioActual = '';
+
+  constructor() {
+    const storedUser = localStorage.getItem(this.SESSION_KEY);
+    if (storedUser) {
+      this.sesionActiva = true;
+      this.usuarioActual = storedUser;
+    }
+  }
 
   /**
    * Valida credenciales. Si son correctas, marca la sesión como activa.
@@ -18,7 +28,16 @@ export class AuthService {
   login(usuario: string, password: string): boolean {
     const esValido =
       usuario === this.USUARIO_VALIDO && password === this.PASSWORD_VALIDA;
+
     this.sesionActiva = esValido;
+    this.usuarioActual = esValido ? usuario.trim() : '';
+
+    if (esValido) {
+      localStorage.setItem(this.SESSION_KEY, this.usuarioActual);
+    } else {
+      localStorage.removeItem(this.SESSION_KEY);
+    }
+
     return esValido;
   }
 
@@ -27,6 +46,8 @@ export class AuthService {
    */
   logout(): void {
     this.sesionActiva = false;
+    this.usuarioActual = '';
+    localStorage.removeItem(this.SESSION_KEY);
   }
 
   /**
@@ -34,5 +55,12 @@ export class AuthService {
    */
   estaLogueado(): boolean {
     return this.sesionActiva;
+  }
+
+  /**
+   * Devuelve el nombre de usuario autenticado.
+   */
+  obtenerUsuarioActual(): string {
+    return this.usuarioActual;
   }
 }

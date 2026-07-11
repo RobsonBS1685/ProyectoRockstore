@@ -1,20 +1,17 @@
 import { Routes } from '@angular/router';
-import { InicioComponent } from './pages/inicio/inicio.component';
+import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CompraComponent } from './pages/compra/compra.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { authGuard, authRedirectGuard } from './guards/auth.guard';
 
-/**
- * Definición de rutas de Rock Store.
- * 'compras' redirige a 'compra', ya que el formulario y el listado
- * ahora viven en un solo componente. Cualquier ruta desconocida
- * redirige al inicio ('').
- */
 export const routes: Routes = [
-  { path: '', component: InicioComponent, title: 'Rock Store | Inicio' },
-  { path: 'compra', component: CompraComponent, title: 'Rock Store | Comprar' },
-
-  { path: 'about', component: AboutComponent, title: 'Rock Store | About' },
-  { path: 'contacto', component: ContactoComponent, title: 'Rock Store | Contacto' },
-  { path: '**', redirectTo: '' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, canActivate: [authRedirectGuard], title: 'Rock Store | Login' },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard], title: 'Rock Store | Panel' },
+  { path: 'compra', component: CompraComponent, canActivate: [authGuard], title: 'Rock Store | Comprar' },
+  { path: 'about', component: AboutComponent, canActivate: [authGuard], title: 'Rock Store | About' },
+  { path: 'contacto', component: ContactoComponent, canActivate: [authGuard], title: 'Rock Store | Contacto' },
+  { path: '**', redirectTo: '/login' },
 ];

@@ -1,0 +1,61 @@
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-5">
+        <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5" style="background: rgba(10, 10, 10, 0.9);">
+          <div class="text-center mb-4">
+            <div class="rounded-circle bg-danger bg-opacity-25 d-inline-flex p-3 mb-3">
+              <i class="bi bi-person-lock text-danger fs-1"></i>
+            </div>
+            <h2 class="fw-bold text-uppercase text-white mb-2">Rock<span class="text-danger">Store</span></h2>
+            <p class="text-secondary mb-0">Accedé al panel de tu tienda rock con tus credenciales.</p>
+          </div>
+
+          <div class="alert alert-danger rounded-3" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="mb-3">
+              <label for="usuario" class="form-label text-light">Usuario</label>
+              <input
+                id="usuario"
+                type="text"
+                class="form-control bg-dark text-light border-secondary"
+                formControlName="usuario"
+                placeholder="admin"
+                [class.is-invalid]="f['usuario'].invalid && f['usuario'].touched"
+              />
+              <div class="invalid-feedback" *ngIf="f['usuario'].errors?.['required'] && f['usuario'].touched">
+                El usuario es obligatorio.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="password" class="form-label text-light">Contraseña</label>
+              <input
+                id="password"
+                type="password"
+                class="form-control bg-dark text-light border-secondary"
+                formControlName="password"
+                placeholder="1234"
+                [class.is-invalid]="f['password'].invalid && f['password'].touched"
+              />
+              <div class="invalid-feedback" *ngIf="f['password'].errors?.['required'] && f['password'].touched">
+                La contraseña es obligatoria.
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-danger w-100 py-2 rounded-3 fw-semibold">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Ingresar
+            </button>
+          </form>
+
+          <div class="text-center mt-3">
+            <small class="text-secondary">Credenciales de prueba: admin / 1234</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
