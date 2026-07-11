@@ -27,7 +27,8 @@
 <section id="formulario-compra" class="container pb-5">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6">
-      <div class="card bg-dark border-secondary shadow-lg p-4">
+        <div class="card border-secondary shadow h-100 p-4"
+     style="background: rgba(0, 0, 0, 0.80);">
         <h3 class="fw-bold text-uppercase text-center mb-4">
           Formulario de <span class="text-danger">Compra</span>
         </h3>
@@ -85,6 +86,8 @@
               id="direccion"
               class="form-control"
               formControlName="direccion"
+              maxlength="100"
+              pattern=".*[0-9].*" 
               placeholder="Ej: Av. Siempre Viva 742"
               [class.is-invalid]="f['direccion'].invalid && f['direccion'].touched"
             />
@@ -105,6 +108,7 @@
               class="form-control"
               formControlName="email"
               placeholder="correo@ejemplo.com"
+              maxlength="100" 
               [class.is-invalid]="f['email'].invalid && f['email'].touched"
             />
             <div class="invalid-feedback" *ngIf="f['email'].errors?.['required'] && f['email'].touched">

@@ -1,19 +1,28 @@
+
+
 <section class="py-5">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-5">
-        <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5" style="background: rgba(10, 10, 10, 0.9);">
-          <div class="text-center mb-4">
-            <div class="rounded-circle bg-danger bg-opacity-25 d-inline-flex p-3 mb-3">
-              <i class="bi bi-person-lock text-danger fs-1"></i>
+<div
+
+  class="card border-0 shadow-lg p-4"
+  style="background: rgba(0, 0, 0, 0.65);">
+          
+            <div class="text-center mb-4">
+            <div class="rounded-circle bg-danger bg-opacity-25 d-flex align-items-center justify-content-center mx-auto"
+                style="width: 100px; height: 100px;">
+              <i class="bi bi-lightning-charge-fill text-danger fs-1"></i>
             </div>
             <h2 class="fw-bold text-uppercase text-white mb-2">Rock<span class="text-danger">Store</span></h2>
             <p class="text-secondary mb-0">Accedé al panel de tu tienda rock con tus credenciales.</p>
           </div>
 
-          <div class="alert alert-danger rounded-3" *ngIf="errorMessage">
-            {{ errorMessage }}
-          </div>
+<div style="min-height: 45px;">
+  <div class="alert alert-danger rounded-3 mb-0" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>
 
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
             <div class="mb-3">
@@ -24,6 +33,7 @@
                 class="form-control bg-dark text-light border-secondary"
                 formControlName="usuario"
                 placeholder="admin"
+                maxlength="100" 
                 [class.is-invalid]="f['usuario'].invalid && f['usuario'].touched"
               />
               <div class="invalid-feedback" *ngIf="f['usuario'].errors?.['required'] && f['usuario'].touched">
@@ -39,6 +49,7 @@
                 class="form-control bg-dark text-light border-secondary"
                 formControlName="password"
                 placeholder="1234"
+                maxlength="100" 
                 [class.is-invalid]="f['password'].invalid && f['password'].touched"
               />
               <div class="invalid-feedback" *ngIf="f['password'].errors?.['required'] && f['password'].touched">

@@ -14,7 +14,8 @@
   <div class="row g-4 justify-content-center">
     <!-- Datos de contacto y redes -->
     <div class="col-12 col-md-5">
-      <div class="card bg-dark border-secondary shadow h-100 p-4">
+  <div class="card border-secondary shadow h-100 p-4"
+     style="background: rgba(0, 0, 0, 0.80);">
         <h4 class="fw-bold text-uppercase mb-4">
           Datos de <span class="text-danger">Contacto</span>
         </h4>
@@ -35,7 +36,8 @@
 
     <!-- Formulario de contacto -->
     <div class="col-12 col-md-6">
-      <div class="card bg-dark border-secondary shadow h-100 p-4">
+        <div class="card border-secondary shadow h-100 p-4"
+     style="background: rgba(0, 0, 0, 0.80);">
         <h4 class="fw-bold text-uppercase mb-4">
           Envíanos un <span class="text-danger">Mensaje</span>
         </h4>
@@ -54,6 +56,7 @@
               class="form-control"
               formControlName="nombre"
               placeholder="Tu nombre"
+              maxlength="100"
               [class.is-invalid]="f['nombre'].invalid && f['nombre'].touched"
             />
             <div class="invalid-feedback" *ngIf="f['nombre'].errors?.['required'] && f['nombre'].touched">
@@ -72,6 +75,7 @@
               class="form-control"
               formControlName="email"
               placeholder="correo@ejemplo.com"
+              maxlength="100"
               [class.is-invalid]="f['email'].invalid && f['email'].touched"
             />
             <div class="invalid-feedback" *ngIf="f['email'].errors?.['required'] && f['email'].touched">
@@ -89,6 +93,7 @@
               class="form-control"
               rows="4"
               formControlName="mensaje"
+              maxlength="300"
               placeholder="Cuéntanos en qué te ayudamos"
               [class.is-invalid]="f['mensaje'].invalid && f['mensaje'].touched"
             ></textarea>
