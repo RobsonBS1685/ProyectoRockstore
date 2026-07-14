@@ -6,6 +6,8 @@ import { ProductoService } from '../../services/producto.service';
 import { Compra } from '../../models/compra.model';
 import { Producto } from '../../models/producto.model';
 
+
+const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;   /* correoValidoProfe */
 /**
  * Componente de Compra: muestra el catálogo de productos, el formulario
  * reactivo para registrar una compra y, debajo, el listado de compras
@@ -35,7 +37,7 @@ export class CompraComponent implements OnInit {
       producto: ['', [Validators.required, Validators.minLength(3)]],
       cantidad: [1, [Validators.required, Validators.min(1)]],
       direccion: ['', [Validators.required, Validators.minLength(5)]],
-      email: ['', [Validators.required, Validators.email]],
+     email: ['', [Validators.required, Validators.pattern(regexCorreo)]],
     });
   }
 
