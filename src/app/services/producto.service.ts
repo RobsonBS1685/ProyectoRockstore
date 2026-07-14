@@ -68,7 +68,65 @@ export class ProductoService {
   precio: 33990,
   imagen: '/shopImg/poleron%20cannibal.jfif',
   categoria: 'Polerones',
-}
+},
+{
+  id: 20,
+  nombre: 'Polera Rock Store',
+  precio: 19990,
+  imagen: '/shopImg/Polera%20rockshop.jpg',
+  categoria: 'Poleras',
+},
+{
+  id: 21,
+  nombre: 'Gorra Kreator',
+  precio: 12990,
+  imagen: '/shopImg/gorro%20kreator.jfif',
+  categoria: 'Gorros',
+},
+{
+  id: 22,
+  nombre: 'Gorra Rock Store',
+  precio: 13990,
+  imagen: '/shopImg/gorro-rock-store.png',
+  categoria: 'Gorros',
+},
+{
+  id: 22,
+  nombre: 'Polera Kiss',
+  precio: 34990,
+  imagen: '/shopImg/polerakiss.jpg',
+  categoria: 'Poleras',
+},
+
+{
+  id: 24,
+  nombre: 'Polerón Black Sabbath',
+  precio: 34990,
+  imagen: '/shopImg/poleronblacksabbth.jpg',
+  categoria: 'Polerones',
+},
+{
+  id: 25,
+  nombre: 'Polerón Mötley Crüe',
+  precio: 34990,
+  imagen: '/shopImg/poleronmotleycrue.jpg',
+  categoria: 'Polerones',
+},
+{
+  id: 26,
+  nombre: 'Polerón Rock Store',
+  precio: 34990,
+  imagen: '/shopImg/poleronockshop.jpg',
+  categoria: 'Polerones',
+},
+{
+  id: 27,
+  nombre: 'Chaqueta Rock Store',
+  precio: 49990,
+  imagen: '/shopImg/chaqueta%20rockStore.png',
+  categoria: 'Chaquetas',
+},
+
   ];
 
   /**
