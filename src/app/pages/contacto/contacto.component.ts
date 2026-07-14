@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; /* correoValidoProfe */
 /**
  * Página de Contacto: datos de contacto, redes sociales y un
  * formulario reactivo simple para que el usuario envíe un mensaje.
@@ -20,7 +21,7 @@ export class ContactoComponent {
   constructor(private fb: FormBuilder) {
     this.contactoForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(regexCorreo)]],
       mensaje: ['', [Validators.required, Validators.minLength(10)]],
     });
   }

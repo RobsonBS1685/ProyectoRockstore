@@ -114,7 +114,7 @@
             <div class="invalid-feedback" *ngIf="f['email'].errors?.['required'] && f['email'].touched">
               El email es obligatorio.
             </div>
-            <div class="invalid-feedback" *ngIf="f['email'].errors?.['email'] && f['email'].touched">
+            <div class="invalid-feedback" *ngIf="f['email'].errors?.['pattern'] && f['email'].touched">
               Ingresa un email con formato válido.
             </div>
           </div>
