@@ -16,6 +16,7 @@ import { Producto } from '../../models/producto.model';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './compra.component.html',
+  styleUrls: ['./compra.component.css'],
 })
 export class CompraComponent implements OnInit {
   compraForm: FormGroup;
